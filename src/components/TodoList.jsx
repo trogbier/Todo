@@ -1,11 +1,11 @@
 import React from 'react';
 
-const App = () => {
+const TodoList = () => {
     return (
         <div>
-          
+            <h1>TodoList</h1>
         </div>
     );
 };
 
-export default App;
+export default TodoList;

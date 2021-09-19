@@ -1,16 +1,14 @@
 import React, {useState} from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Form} from 'reactstrap';
 
-const CreateTask = ({isOpen, toggle, save}) => {
-    const [taskName, setTaskName] = useState('')
-    const [description, setDescription] = useState('')
+const EditTask = ({isOpen, toggle, updateTask, id, name, descriptionDes}) => {
+    const [taskName, setTaskName] = useState(name)
+    const [description, setDescription] = useState(descriptionDes)
 
-    const handleSave = () => {
+    const handleChange = () => {
         if (taskName && description) {
-            const task = {name: taskName, description, id: Date.now()}
-            save(task)
-            setTaskName('')
-            setDescription('')
+            const task = {name: taskName, description, id: id}
+            updateTask(task)
         } else {
             alert('Введите данные')
         }
@@ -18,7 +16,7 @@ const CreateTask = ({isOpen, toggle, save}) => {
 
     return (
         <Modal isOpen={isOpen} toggle={toggle}>
-            <ModalHeader toggle={toggle}>Create Task</ModalHeader>
+            <ModalHeader toggle={toggle}>Change Task</ModalHeader>
             <ModalBody>
                 <Form>
                     <div className={'form-group'}>
@@ -34,11 +32,11 @@ const CreateTask = ({isOpen, toggle, save}) => {
                 </Form>
             </ModalBody>
             <ModalFooter>
-                <Button color="primary" onClick={handleSave}>Create</Button>{' '}
+                <Button color="primary" onClick={handleChange}>Change</Button>{' '}
                 <Button color="secondary" onClick={toggle}>Cancel</Button>
             </ModalFooter>
         </Modal>
     );
 };
 
-export default CreateTask;
+export default EditTask;

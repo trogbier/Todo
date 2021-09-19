@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CreateTask from "../modals/CreateTask";
 
 const TodoList = () => {
@@ -8,8 +8,17 @@ const TodoList = () => {
     const toggle = () => setIsOpen(!isOpen);
 
     const saveTask = (task) => {
-        setTaskList([...taskList, task])
+        const newList = [...taskList, task]
+        localStorage.setItem("taskList",JSON.stringify(newList))
+        setTaskList(newList)
     }
+    useEffect(()=>{
+        if (localStorage.getItem("taskList")){
+            const data = localStorage.getItem("taskList")
+            const listTask = JSON.parse(data)
+            setTaskList(listTask)
+        }
+    },[])
 
     return (
         <>

@@ -8,7 +8,6 @@ const CreateTask = ({isOpen, toggle, save}) => {
     const handleSave = () => {
         const task = {name: taskName, description}
         save(task)
-        toggle()
         setTaskName('')
         setDescription('')
     }
